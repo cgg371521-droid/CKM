@@ -166,10 +166,10 @@ class LlavaMetaModel:
             device = "cuda" if torch.cuda.is_available() else "cpu"
             self.anchor_manager = DistributedGraphEvolvingAnchors(
                 task_ids=[0, 1, 2, 3, 4, 5],
-                K_per_task=4,          # multi-components help separation / stability
+                K_per_task=5, 
                 feat_dim=1536,         # fused = [img(768), txt(768)] -> 1536
                 device=device,
-                topk_graph=2,          # a bit smaller than 8 to reduce noisy cross-task pull 1-5
+                topk_graph=21,         
             ).to(device)
         return self.anchor_manager
 
